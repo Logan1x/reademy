@@ -15,9 +15,7 @@ export default function BookSearch() {
     try {
       const data = await axios.get(bookAPI + book + apiKey + defaultResults);
       setBookData(data.data.items);
-      setShowLoadMoreBtn(true);
       setShowOtherBookOption(true);
-      console.log(data.data.items[4].volumeInfo.imageLinks);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +40,11 @@ export default function BookSearch() {
             onChange={(e) => setBook(e.target.value)}
           />
         </div>
-        <button type="submit" className="border px-2 py-1 bg-indigo-300">
+        <button
+          type="submit"
+          className="border px-2 py-1 bg-indigo-300"
+          onClick={() => setShowLoadMoreBtn(false)}
+        >
           Search
         </button>
       </form>
